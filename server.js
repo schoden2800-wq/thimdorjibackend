@@ -144,7 +144,7 @@ app.use(
       "https://thimdorjireceptionist.onrender.com",
       "https://thim-dorji-frontend.vercel.app",
       "https://thim-dorji-frontend-ami1.vercel.app",
-      "https://thim-dorji-frontend-m6uj.vercel.app"
+      "https://thimdorjifrontend.vercel.app"
     ],
     credentials: true,
   })
