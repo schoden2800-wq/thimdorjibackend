@@ -139,11 +139,6 @@ app.use(
       "http://localhost:5173",
       "http://localhost:5174",
       "http://localhost:5175",
-      "https://thimdorjiwebsite.onrender.com",
-      "https://thimdorjiadmin.onrender.com",
-      "https://thimdorjireceptionist.onrender.com",
-      "https://thim-dorji-frontend.vercel.app",
-      "https://thim-dorji-frontend-ami1.vercel.app",
       "https://thimdorjifrontend.vercel.app"
     ],
     credentials: true,
