@@ -139,7 +139,9 @@ app.use(
       "http://localhost:5173",
       "http://localhost:5174",
       "http://localhost:5175",
-      "https://thimdorjifrontend.vercel.app"
+      "https://thimdorjifrontend.vercel.app",
+      "https://thimdorjifrontendreception.vercel.app",
+      "https://thimdorjifrontendadmin1.vercel.app"
     ],
     credentials: true,
   })
