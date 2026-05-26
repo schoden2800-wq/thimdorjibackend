@@ -9,6 +9,7 @@ const { sendMailWithGmailApi } = require("../utils/gmailSender");
 ;
 const adminEmail = process.env.ADMIN_EMAIL;
 
+
 const validator = require("validator");
 const sanitizeHtml = require("sanitize-html");
 const generateBookingNumber = async () => {
