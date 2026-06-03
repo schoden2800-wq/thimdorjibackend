@@ -1561,22 +1561,74 @@ exports.createBooking = async (req, res) => {
     // ====================================================
     // ⭐ 5. EMAILS
     // ====================================================
-    const htmlUser = `
-      <div style="font-family: Arial; padding: 20px;">
-        <h2 style="color:#006600;">Booking Received</h2>
-        <p>Assigned Rooms: ${assignedRoomsFinal.join(", ")}</p>
-        <p>Total: BTN ${total.toFixed(2)}</p>
-      </div>
-    `;
+    // const htmlUser = `
+    //   <div style="font-family: Arial; padding: 20px;">
+    //     <h2 style="color:#006600;">Booking Received</h2>
+    //     <p>Assigned Rooms: ${assignedRoomsFinal.join(", ")}</p>
+    //     <p>Total: BTN ${total.toFixed(2)}</p>
+    //   </div>
+    // `;
 
-    const htmlAdmin = `
-      <div style="font-family: Arial; padding: 20px;">
-        <h2 style="color:#006600;">New Booking</h2>
-        <p>Rooms: ${assignedRoomsFinal.join(", ")}</p>
-        <p>Total: BTN ${total.toFixed(2)}</p>
-      </div>
-    `;
+    // const htmlAdmin = `
+    //   <div style="font-family: Arial; padding: 20px;">
+    //     <h2 style="color:#006600;">New Booking</h2>
+    //     <p>Rooms: ${assignedRoomsFinal.join(", ")}</p>
+    //     <p>Total: BTN ${total.toFixed(2)}</p>
+    //   </div>
+    // `;
+const htmlUser = `
+  <div style="font-family: Arial, sans-serif; padding: 15px; background-color: #f9f9f9;">
+    <div style="max-width: 600px; margin: auto; background: white; border-radius: 10px; padding: 20px; border: 1px solid #ddd;">
+      <h2 style="color: #006600;">Booking Received</h2>
 
+      <p>Dear <strong>${firstName} ${lastName}</strong>,</p>
+
+      <p>Your booking request has been <strong>received successfully</strong>.</p>
+
+      <h3 style="color:#333;">Booking Details</h3>
+
+      <p><strong>Booking Number:</strong> ${bookingNumber}</p>
+      <p><strong>Assigned Rooms:</strong> ${assignedRoomsFinal.join(", ") || "Not assigned yet"}</p>
+      <p><strong>Check-In:</strong> ${ci.toDateString()}</p>
+      <p><strong>Check-Out:</strong> ${co.toDateString()}</p>
+      <p><strong>Total Amount:</strong> BTN ${total.toFixed(2)}</p>
+
+      <p style="margin-top:20px;">
+        Thank you for choosing <strong>Hotel Thim-Dorji</strong>.  
+        We will contact you shortly for confirmation.
+      </p>
+
+      <p style="margin-top: 25px;">Best Regards,<br><strong>Hotel Reservation Team</strong></p>
+    </div>
+  </div>
+`;
+
+const htmlAdmin = `
+  <div style="font-family: Arial, sans-serif; padding: 15px; background-color: #f9f9f9;">
+    <div style="max-width: 600px; margin: auto; background: white; border-radius: 10px; padding: 20px; border: 1px solid #ddd;">
+      <h2 style="color: #006600;">New Booking Received</h2>
+
+      <p>A new booking has been received.</p>
+
+      <h3 style="color:#333;">Guest Details</h3>
+
+      <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Phone:</strong> ${phone}</p>
+      <p><strong>Country:</strong> ${country}</p>
+
+      <h3 style="color:#333;">Booking Details</h3>
+
+      <p><strong>Booking Number:</strong> ${bookingNumber}</p>
+      <p><strong>Assigned Rooms:</strong> ${assignedRoomsFinal.join(", ") || "Not assigned yet"}</p>
+      <p><strong>Check-In:</strong> ${ci.toDateString()}</p>
+      <p><strong>Check-Out:</strong> ${co.toDateString()}</p>
+      <p><strong>Total Amount:</strong> BTN ${total.toFixed(2)}</p>
+
+      <p style="margin-top: 25px;">Best Regards,<br><strong>Hotel Reservation System</strong></p>
+    </div>
+  </div>
+`;
     try {
       await sendMailWithGmailApi(email, `Booking ${bookingNumber}`, htmlUser);
       await sendMailWithGmailApi(adminEmail, `New Booking ${bookingNumber}`, htmlAdmin);
